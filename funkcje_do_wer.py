@@ -24,3 +24,26 @@ print(series_1.views)
 
 #print(movie_1)
 #print(series_1)
+
+#print("filmy")
+#for movie in get_movies(catalog):
+#    print(movie)
+
+#print("seriale")
+#for series in get_series(catalog):
+#    print(series)
+
+#for i in search("Game of troness"):
+#    print(i)
+
+
+#def get_series(all_series):
+#    return sorted(all_series, key=lambda series: series.title)
+
+#sorted_movies = get_movies(all_movies)
+#for movie in sorted_movies:
+#    print(movie)
+
+#sorted_series = get_series(all_series)
+#for series in sorted_series:
+#    print(series)
