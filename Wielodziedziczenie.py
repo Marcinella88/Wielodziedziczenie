@@ -48,10 +48,10 @@ all_series = [series_1, series_2, series_3, series_4, series_5, series_6, series
 catalog = all_movies + all_series
 
 
-def get_movies(catalog):
+def get_movies():
     return sorted([ m for m in catalog if isinstance(m, Movie) and not isinstance(m, Series)], key=lambda movie: movie.title)
 
-def get_series(catalog):
+def get_series():
     return sorted([ s for s in catalog if isinstance(s, Series)], key=lambda series: series.title)
 
 def search(title):
@@ -60,40 +60,24 @@ def search(title):
         print("Brak wyszukań!")
     return result_searching
 
-#for i in search("Game of trones"):
-#        print(i)
-
 def generate_views():
     random_movies = random.choice(catalog)
     random_movies.views += random.choice(list(range(1,101)))
     return random_movies
 
-#random_movies_1 = generate_views(catalog)
-#print(random_movies_1)
-#print(random_movies_1.views)
-
 def add_views():
     for _ in range(10):
         generate_views()
 
-def top_titles():
+def top_titles(ilosc):
     _sorted_list = sorted(catalog, key= lambda x: x.views, reverse=True)
-    x = 5
-    sorted_list = _sorted_list[:x]
+    sorted_list = _sorted_list[:ilosc]
     return sorted_list
-
-print("Przed")
-for i in catalog:
-    print(i)
 
 add_views()
 
-print("Po")
-for i in catalog:
-    print(i)
+if __name__ == "__main__":
+    ilosc = int(input("Ile najpopularniejszych filmów mam wyświetlić? "))
 
-sorted_list_1=top_titles()
-
-print("Po sortowaniu")
-for i in sorted_list_1:
+for i in top_titles(ilosc):
     print(i)
