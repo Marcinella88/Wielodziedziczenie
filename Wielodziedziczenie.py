@@ -15,7 +15,6 @@ class Movie:
     def __str__(self):
         return f'"{self.title} ({self.year}) {self.views}"'
     
-
 class Series(Movie):
     def __init__(self, episode_number, season_number,*args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -24,28 +23,6 @@ class Series(Movie):
 
     def __str__(self):
         return f'"{self.title} S{(str(self.season_number)).zfill(2)}E{(str(self.episode_number)).zfill(2) }" {self.views}'
-
-
-movie_1 = Movie(title="The Green Mile", year="1999", type_movie="drama", views=0)
-movie_2 = Movie(title="The Shawshank Redemption", year="1994", type_movie="drama", views=0)
-movie_3 = Movie(title="Forrest Gump", year="1994", type_movie="comedy", views=0)
-movie_4 = Movie(title="Leon", year="1994", type_movie="drama", views=0)
-movie_5 = Movie(title="The Matrix", year="1999", type_movie="Sci-Fi", views=0)
-
-series_1 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=11, season_number=1)
-series_2 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=2, season_number=11)
-series_3 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=3, season_number=1)
-series_4 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=1, season_number=2)
-series_5 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=2, season_number=2)
-series_6 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=3, season_number=2)
-series_7 = Series(title="Breaking Bad", year="2008", type_movie="drama", views=0, episode_number=1, season_number=1)
-series_8 = Series(title="Breaking Bad", year="2008", type_movie="drama", views=0, episode_number=2, season_number=1)
-series_9 = Series(title="Breaking Bad", year="2008", type_movie="drama", views=0, episode_number=1, season_number=2)
-series_10 = Series(title="Breaking Bad", year="2008", type_movie="drama", views=0, episode_number=2, season_number=2)
-
-all_movies = [movie_1, movie_2, movie_3, movie_4, movie_5]
-all_series = [series_1, series_2, series_3, series_4, series_5, series_6, series_7, series_8, series_9, series_10]
-catalog = all_movies + all_series
 
 
 def get_movies():
@@ -60,24 +37,49 @@ def search(title):
         print("Brak wyszukań!")
     return result_searching
 
-def generate_views():
+def generate_views(catalog):
     random_movies = random.choice(catalog)
-    random_movies.views += random.choice(list(range(1,101)))
+    random_movies.views += random.randint(1,100)
     return random_movies
 
-def add_views():
-    for _ in range(10):
-        generate_views()
+def add_views(x):
+    for _ in range(x):
+        generate_views(catalog)
 
 def top_titles(ilosc):
     _sorted_list = sorted(catalog, key= lambda x: x.views, reverse=True)
     sorted_list = _sorted_list[:ilosc]
     return sorted_list
 
-add_views()
 
 if __name__ == "__main__":
-    ilosc = int(input("Ile najpopularniejszych filmów mam wyświetlić? "))
+  
+    movie_1 = Movie(title="The Green Mile", year="1999", type_movie="drama", views=0)
+    movie_2 = Movie(title="The Shawshank Redemption", year="1994", type_movie="drama", views=0)
+    movie_3 = Movie(title="Forrest Gump", year="1994", type_movie="comedy", views=0)
+    movie_4 = Movie(title="Leon", year="1994", type_movie="drama", views=0)
+    movie_5 = Movie(title="The Matrix", year="1999", type_movie="Sci-Fi", views=0)
+    
+    series_1 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=11, season_number=1)
+    series_2 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=2, season_number=11)
+    series_3 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=3, season_number=1)
+    series_4 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=1, season_number=2)
+    series_5 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=2, season_number=2)
+    series_6 = Series(title="Game of trones", year="2011", type_movie="drama", views=0, episode_number=3, season_number=2)
+    series_7 = Series(title="Breaking Bad", year="2008", type_movie="drama", views=0, episode_number=1, season_number=1)
+    series_8 = Series(title="Breaking Bad", year="2008", type_movie="drama", views=0, episode_number=2, season_number=1)
+    series_9 = Series(title="Breaking Bad", year="2008", type_movie="drama", views=0, episode_number=1, season_number=2)
+    series_10 = Series(title="Breaking Bad", year="2008", type_movie="drama", views=0, episode_number=2, season_number=2)
+    
+    all_movies = [movie_1, movie_2, movie_3, movie_4, movie_5]
+    all_series = [series_1, series_2, series_3, series_4, series_5, series_6, series_7, series_8, series_9, series_10]
+    catalog = all_movies + all_series
+    
+    x = 10
 
-for i in top_titles(ilosc):
-    print(i)
+    add_views(x)
+
+    ile_wyswietlic = int(input("Ile najpopularniejszych filmów mam wyświetlić? "))
+
+    for i in top_titles(ile_wyswietlic):
+        print(i)
