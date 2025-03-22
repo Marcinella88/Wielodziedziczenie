@@ -7,13 +7,13 @@ class Movie:
          self.year = year
          self.type_movie = type_movie
          self.views = views
-     
+
+    def __str__(self):
+         return f'"{self.title}" ({self.year})' 
+
     def play(self):
          self.views += 1
- 
-    def __str__(self):
-         return f'"{self.title}" ({self.year}) {self.views}'
-    
+   
     def get_movies(catalog):
         return sorted([ m for m in catalog if type(m) == Movie], key=lambda movie: movie.title)
  
@@ -48,7 +48,7 @@ class Series(Movie):
         self.season_number = season_number
  
     def __str__(self):
-         return f'"{self.title} S{(str(self.season_number)).zfill(2)}E{(str(self.episode_number)).zfill(2) }" ile wyświetlen: {self.views}'
+         return f'"{self.title}" S{(str(self.season_number)).zfill(2)}E{(str(self.episode_number)).zfill(2) }'
 
 
 if __name__ == "__main__":
@@ -58,8 +58,8 @@ if __name__ == "__main__":
     movie_3 = Movie(title="Forrest Gump", year="1994", type_movie="comedy", views=0)
     movie_4 = Movie(title="Leon", year="1994", type_movie="drama", views=0)
     movie_5 = Movie(title="The Matrix", year="1999", type_movie="Sci-Fi", views=0)
-    series_1 = Series(title="Game of Trones", year="2011", type_movie="drama", views=0, episode_number=11, season_number=1)
-    series_2 = Series(title="Game of Trones", year="2011", type_movie="drama", views=0, episode_number=2, season_number=11)
+    series_1 = Series(title="Game of Trones", year="2011", type_movie="drama", views=0, episode_number=1, season_number=1)
+    series_2 = Series(title="Game of Trones", year="2011", type_movie="drama", views=0, episode_number=2, season_number=1)
     series_3 = Series(title="Game of Trones", year="2011", type_movie="drama", views=0, episode_number=3, season_number=1)
     series_4 = Series(title="Game of Trones", year="2011", type_movie="drama", views=0, episode_number=1, season_number=2)
     series_5 = Series(title="Game of Trones", year="2011", type_movie="drama", views=0, episode_number=2, season_number=2)
