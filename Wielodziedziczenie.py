@@ -9,7 +9,7 @@ class Movies:
         self.views = views
 
     def __str__(self):
-        return f'"{self.title}" ({self.year}) ({self.views})'
+        return f'"{self.title}" ({self.year})'
     
     def play(self):
         self.views += 1
@@ -21,7 +21,7 @@ class Series(Movies):
         self.season_number = season_number
  
     def __str__(self):
-        return f'"{self.title}" S{(str(self.season_number)).zfill(2)}E{(str(self.episode_number)).zfill(2)} ({self.views})'
+        return f'"{self.title}" S{(str(self.season_number)).zfill(2)}E{(str(self.episode_number)).zfill(2)}'
 
 
 def generate_date_now():
